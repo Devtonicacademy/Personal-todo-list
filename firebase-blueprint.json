@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "Task": {
+      "title": "Task",
+      "description": "A top-level task containing sub-tasks and dependencies.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high"] },
+        "subTasks": { "type": "array" },
+        "dependencies": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "dueDate": { "type": "string", "format": "date-time" },
+        "uid": { "type": "string", "description": "The owner of the task" }
+      },
+      "required": ["id", "title", "priority", "uid", "createdAt"]
+    },
+    "JournalEntry": {
+      "title": "Journal Entry",
+      "description": "A commitment, quote, or milestone logged by the user.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["commitment", "quote", "milestone"] },
+        "content": { "type": "string" },
+        "author": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "uid": { "type": "string" }
+      },
+      "required": ["id", "type", "content", "createdAt", "uid"]
+    }
+  },
+  "firestore": {
+    "/tasks/{taskId}": {
+      "schema": "Task",
+      "description": "Collection of tasks owned by users"
+    },
+    "/journal/{entryId}": {
+      "schema": "JournalEntry",
+      "description": "Collection of journal entries (commitments, quotes, milestones) owned by users"
+    }
+  }
+}
