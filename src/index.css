@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -8,40 +7,27 @@
 }
 
 @layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+  
+  .dark {
+    --background: #0a0a0a;
+    --foreground: #f5f5f5;
+  }
+
   body {
-    @apply font-sans antialiased;
+    @apply font-sans antialiased bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300 selection:bg-black selection:text-white dark:selection:bg-white dark:selection:text-black;
   }
 }
 
 .prose pre {
-  @apply bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto;
+  @apply bg-zinc-900 text-zinc-100 p-4 rounded-xl overflow-x-auto border border-zinc-800;
 }
 
 .prose code {
-  @apply font-mono text-sm bg-gray-100 px-1.5 py-0.5 rounded text-red-500;
-}
-
-input[type="range"] {
-  @apply cursor-pointer;
-}
-
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-}
-
-@layer base {
-  body {
-    @apply font-sans antialiased;
-  }
-}
-
-.prose pre {
-  @apply bg-gray-900 text-gray-100 p-4 rounded-xl overflow-x-auto;
-}
-
-.prose code {
-  @apply font-mono text-sm bg-gray-100 px-1.5 py-0.5 rounded text-red-500;
+  @apply font-mono text-sm bg-zinc-100 dark:bg-zinc-800 px-1.5 py-0.5 rounded text-red-500 dark:text-red-400;
 }
 
 input[type="range"] {

@@ -8,6 +8,7 @@ export interface SubTask {
   priority: Priority;
   dueDate: string;
   status: Status;
+  dependencies?: string[]; // IDs of other sub-tasks or parent tasks
 }
 
 export interface Task {
